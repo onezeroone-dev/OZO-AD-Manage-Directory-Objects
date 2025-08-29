@@ -1,4 +1,4 @@
-# OZO PowerShell Script Template
+# OZO AD Manage Directory Objects Change Log
 
 |Date|Version|Comment|
 |----|-------|-------|
