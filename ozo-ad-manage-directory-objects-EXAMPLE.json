@@ -1,9 +1,36 @@
 {
-    "ExcelFileName":"ozo-powershell-script-template-report.xlsx",
-    "ExcelWorksheetName":"Items",
-    "Items":[
-        "Item1",
-        "Item2",
-        "Item3"
+    "ADContacts":[
+        {
+            "FirstName":"",
+            "LastName":"",
+            "EmailAddress":"",
+            "PhoneNumber":""
+        }
+    ],
+    "ADComputers":[
+        {
+            "ComputerName":"",
+            "Path":""
+        }
+    ],
+    "ADGroups":[
+        {
+            "Name":"",
+            "Path":"",
+            "Scope":0,
+            "Members":[]
+        }
+    ],
+    "ADUsers":[
+        {
+            "Surname":"",
+            "GivenName":"",
+            "Division":"",
+            "Title":"",
+            "EmployeeID":0,
+            "SamAccountName":"",
+            "Password":"",
+            "Path":""
+        }
     ]
 }
