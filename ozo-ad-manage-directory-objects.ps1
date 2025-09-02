@@ -39,13 +39,13 @@
 Class OZOMain {
     # PROPERTIES: Booleans, Strings
     [Boolean] $Success   = $false
-    [String]  $adDomain  = $null
     [String]  $jsonPath  = $null
     [String]  $outDir    = $null
     [String]  $excelPath = $null
     # PROPERTIES: PSCustomObjects
-    [PSCustomObject] $Json   = $null
-    [PSCustomObject] $Logger = $null
+    [PSCustomObject] $adDomain  = $null
+    [PSCustomObject] $Json      = $null
+    [PSCustomObject] $Logger    = $null
     # PROPERTIES: PSCustomObject Lists
     [System.Collections.Generic.List[PSCustomObject]] $adOUs       = @()
     [System.Collections.Generic.List[PSCustomObject]] $adContacts  = @()
@@ -83,9 +83,9 @@ Class OZOMain {
                 # Add an OZOADGroup object to the adGroups list
                 $this.adGroups.Add(([OZOADGroup]::new($adGroup)))
             }
-            # Iterate through the JSON GPO objects
+            # Iterate through the JSON Group Policy objects
             ForEach ($adGPO in $this.Json.ADGroupPolicies) {
-                # Add an OZOADGroupPolicyObject object to the adOUs list
+                # Add an OZOADGroupPolicyObject object to the adGPOs list
                 $this.adGPOs.Add(([OZOADGroupPolicyObject]::new($adOU)))
             }
             # Iterate through the JSON User objects
@@ -168,7 +168,6 @@ Class OZOMain {
     }
     # METHODS: Report method
     Hidden [Void] Report() {
-        
     }
 }
 
@@ -221,7 +220,7 @@ Class OZOADComputer {
             Path = $adComputer.Path
         }
         # Determine if the computer does not already exist
-        If ([Boolean](Get-ADComputer -Identity $adComputer.Name) -eq $false) {
+        If ([Boolean](Get-ADComputer -Identity $adComputer.Name -ErrorAction SilentlyContinue) -eq $false) {
             # Computer object does not already exist; try to create it
             Try {
                 New-ADComputer @Parameters -ErrorAction Stop
@@ -284,7 +283,7 @@ Class OZOADGroupPolicyObject {
     # METHODS: Constructor method
     OZOADGroupPolicyObject($adGPO) {
         # Determine if the GPO does not already exist
-        If ([Boolean](Get-GPO -Name $adGPO.Name) -eq $false) {
+        If ([Boolean](Get-GPO -Name $adGPO.Name -ErrorAction SilentlyContinue) -eq $false) {
             # GPO does not already exists; try to create it
             Try {
                 New-GPO -Name $adGPO.Name -ErrorAction Stop
@@ -326,7 +325,7 @@ Class OZOADOrganizationalUnit {
             Path = $adOU.Path
         }
         # Determine if the OU does not already exist
-        If ([Boolean](Get-ADOrganizationalUnit -Identity $adOUDN) -eq $false) {
+        If ([Boolean](Get-ADOrganizationalUnit -Identity $adOUDN -ErrorAction SilentlyContinue) -eq $false) {
             # OU does not already exist; try to create it
             Try {
                 New-ADOrganizationalUnit @Parameters -ErrorAction Stop
@@ -349,12 +348,12 @@ Class OZOADUser {
     # PROPERTIES: String lists
     [System.Collections.Generic.List[String]] $Messages = @()
     # METHODS: Constructor method
-    OZOADUser($adUser,$adDomain) {
+    OZOADUser($adUser,$adDomainName) {
         # Define parameters
         $Parameters = @{
             Name = ($adUser.GivenName + " " + $adUser.Surname)
             SamAccountName = $adUser.SamAccountName
-            UserPrincipalName = ($adUser.SamAccountName + "@" + $adDomain)
+            UserPrincipalName = ($adUser.SamAccountName + "@" + $adDomainName)
             AccountPassword = (ConvertTo-SecureString -AsPlainText -String $adUser.Password -Force)
             Enabled = $true
             Path = $adUser.Path
