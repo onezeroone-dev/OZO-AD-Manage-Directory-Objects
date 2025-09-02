@@ -1,36 +1,231 @@
 {
     "ADContacts":[
         {
-            "FirstName":"",
-            "LastName":"",
-            "EmailAddress":"",
-            "PhoneNumber":""
+            "FirstName":"William",
+            "LastName":"Gates",
+            "EmailAddress":"wgates@contoso.com",
+            "Path":"OU=External Contacts,DC=contoso,DC=com",
+            "TelephoneNumber":"+1-206-555-6738"
         }
     ],
     "ADComputers":[
         {
-            "ComputerName":"",
-            "Path":""
-        }
+            "ComputerName":"client",
+            "Path":"OU=IT,OU=Workstations,DC=contoso,DC=com"
+        },
+        {
+            "ComputerName":"server",
+            "Path":"OU=IT,OU=Servers,DC=contoso,DC=com"
+        } 
     ],
+    "ADDefaultObjectsOUs":{
+        "Groups":"OU=Domain Groups,DC=contoso,DC=com",
+        "Users":"OU=Domain Users,DC=contoso,DC=com"
+    },
     "ADGroups":[
         {
-            "Name":"",
-            "Path":"",
-            "Scope":0,
-            "Members":[]
+            "Name":"IT AD Delegates",
+            "Path":"OU=IT,OU=Groups,DC=contoso,DC=com",
+            "Scope":1,
+            "Groups":[]
+        },
+        {
+            "Name":"IT Servers Local Administrators",
+            "Path":"OU=IT,OU=Groups,DC=contoso,DC=com",
+            "Scope":1,
+            "Groups":[]
+        },
+        {
+            "Name":"IT Share Modify",
+            "Path":"OU=IT,OU=Groups,DC=contoso,DC=com",
+            "Scope":1,
+            "Groups":[]
+        },
+        {
+            "Name":"IT Share Read",
+            "Path":"OU=IT,OU=Groups,DC=contoso,DC=com",
+            "Scope":1,
+            "Groups":[]
+        },
+        {
+            "Name":"IT Workstations Local Administrators",
+            "Path":"OU=IT,OU=Groups,DC=contoso,DC=com",
+            "Scope":1,
+            "Groups":[]
+        },
+        {
+            "Name":"IT GPO Delegates",
+            "Path":"OU=Domain Groups,DC=contoso,DC=com",
+            "Scope":1,
+            "Groups":[]
+        },
+        {
+            "Name":"IT Groups Delegates",
+            "Path":"OU=Domain Groups,DC=contoso,DC=com",
+            "Scope":1,
+            "Groups":[]
+        },
+        {
+            "Name":"IT People Delegates",
+            "Path":"OU=Domain Groups,DC=contoso,DC=com",
+            "Scope":1,
+            "Groups":[]
+        },
+        {
+            "Name":"IT Servers Delegates",
+            "Path":"OU=Domain Groups,DC=contoso,DC=com",
+            "Scope":1,
+            "Groups":[]
+        },
+        {
+            "Name":"IT Service Accounts Delegates",
+            "Path":"OU=Domain Groups,DC=contoso,DC=com",
+            "Scope":1,
+            "Groups":[]
+        },
+        {
+            "Name":"IT Workstations Delegates",
+            "Path":"OU=Domain Groups,DC=contoso,DC=com",
+            "Scope":1,
+            "Groups":[]
+        },
+        {
+            "Name":"IT AD Delegates",
+            "Path":"OU=IT,OU=Groups,DC=contoso,DC=com",
+            "Scope":1,
+            "Groups":[
+                "IT GPO Delegates",
+                "IT Groups Delegates",
+                "IT People Delegates",
+                "IT Servers Delegates",
+                "IT Service Accounts Delegates",
+                "IT Workstations Delegates"
+            ]
+        }
+    ],
+    "ADGroupPolicyObjects":[
+        {
+            "Name":"IT People Settings",
+            "Links":[
+                "OU=IT,OU=People,DC=contoso,DC=com"
+            ]
+        },
+        {
+            "Name":"IT Servers Settings",
+            "Links":[
+                "OU=IT,OU=Servers,DC=contoso,DC=com"
+            ]
+        },
+        {
+            "Name":"IT Workstations Settings",
+            "Links":[
+                "OU=IT,OU=Workstations,DC=contoso,DC=com"
+            ]
+        }
+    ],
+    "ADOrganizationalUnits":[
+        {
+            "Name":"Domain Groups",
+            "Path":"DC=contoso,DC=com"
+        },
+        {
+            "Name":"Domain Users",
+            "Path":"DC=contoso,DC=com"
+        },
+        {
+            "Name":"External Contacts",
+            "Path":"DC=contoso,DC=com"
+        },
+        {
+            "Name":"Groups",
+            "Path":"DC=contoso,DC=com"
+        },
+        {
+            "Name":"Servers",
+            "Path":"DC=contoso,DC=com"
+        },
+        {
+            "Name":"Workstations",
+            "Path":"DC=contoso,DC=com"
+        },
+        {
+            "Name":"Service Accounts",
+            "Path":"DC=contoso,DC=com"
+        },
+        {
+            "Name":"People",
+            "Path":"DC=contoso,DC=com"
+        },
+        {
+            "Name":"IT",
+            "Path":"OU=Groups,DC=contoso,DC=com"
+        },
+        {
+            "Name":"IT",
+            "Path":"OU=Groups,DC=contoso,DC=com"
+        },
+        {
+            "Name":"IT",
+            "Path":"OU=People,DC=contoso,DC=com"
+        },
+        {
+            "Name":"IT",
+            "Path":"OU=Servers,DC=contoso,DC=com"
+        },
+        {
+            "Name":"IT",
+            "Path":"OU=Service Accounts,DC=contoso,DC=com"
+        },
+        {
+            "Name":"IT",
+            "Path":"OU=Workstations,DC=contoso,DC=com"
         }
     ],
     "ADUsers":[
         {
-            "Surname":"",
-            "GivenName":"",
-            "Division":"",
-            "Title":"",
-            "EmployeeID":0,
-            "SamAccountName":"",
-            "Password":"",
-            "Path":""
+            "Surname":"Martinez",
+            "GivenName":"Mae",
+            "Division":"IT",
+            "Title":"IT Director",
+            "EmployeeID":439938,
+            "SamAccountName":"mmartinez",
+            "Password":"y;UA36NEE[Xr&1!_",
+            "Path":"OU=IT,OU=People,DC=contoso,DC=com",
+            "Groups":[
+                "IT AD Delegates",
+                "IT Servers Local Administrators",
+                "IT Share Modify"
+            ]
+        },
+        {
+            "Surname":"Hardy",
+            "GivenName":"Phillip",
+            "Division":"IT",
+            "Title":"IT Server Engineer",
+            "EmployeeID":372533,
+            "SamAccountName":"phardy",
+            "Password":"!ePp9_#Q4x4]CJyC",
+            "Path":"OU=IT,OU=People,DC=contoso,DC=com",
+            "Groups":[
+                "IT AD Delegates",
+                "IT Servers Local Administrators",
+                "IT Share Modify",
+                "IT Workstations Local Administrators"
+            ]
+        },
+        {
+            "Surname":"Richards",
+            "GivenName":"Daryl",
+            "Division":"IT",
+            "Title":"IT Workstation Engineer",
+            "EmployeeID":232908,
+            "SamAccountName":"drichards",
+            "Password":"b)q0iC5!:Bu@_[F$",
+            "Path":"OU=IT,OU=People,DC=contoso,DC=com",
+            "Groups":[
+                "IT Share Modify",
+                "IT Workstations Local Administrators"
+            ]
         }
     ]
 }
