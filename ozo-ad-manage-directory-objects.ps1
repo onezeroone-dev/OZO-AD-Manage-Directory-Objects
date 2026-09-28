@@ -167,21 +167,21 @@ Class OZOMain {
         # Determine that at least one object was processed
         If (($this.adComputers + $this.adContacts + $this.adGroups + $this.adGPOs + $this.adOUs + $this.adUsers).Count -gt 0) {
             # At least one object was processed; Produce Excel output
-            $this.adComputers | Select-Object -Property @{Name="Computer Name";Expression={$_.Parameters["Name"]}},@{Name="Success";Expression={$_.Success}},@{Name="Messages";Expression={$_.messages -Join "; "}} | Export-Excel -WorksheetName "Computers" -Path $this.excelPath
-            $this.adContacts | Select-Object -Property @{Name="Contact Name";Expression={$_.Parameters["Name"]}},@{Name="Success";Expression={$_.Success}},@{Name="Messages";Expression={$_.messages -Join "; "}} | Export-Excel -WorksheetName "Contacts" -Path $this.excelPath
-            $this.adGroups | Select-Object -Property @{Name="Group Name";Expression={$_.Parameters["Name"]}},@{Name="Success";Expression={$_.Success}},@{Name="Messages";Expression={$_.messages -Join "; "}} | Export-Excel -WorksheetName "Groups" -Path $this.excelPath
-            $this.adGPOs | Select-Object -Property @{Name="GPO Name";Expression={$_.adGPO.Name}},@{Name="Success";Expression={$_.Success}},@{Name="Messages";Expression={$_.messages -Join "; "}} | Export-Excel -WorksheetName "GPOs" -Path $this.excelPath
-            $this.adOUs | Select-Object -Property @{Name="OU";Expression={$_.Parameters["Name"]}},@{Name="Success";Expression={$_.Success}},@{Name="Messages";Expression={$_.messages -Join "; "}} | Export-Excel -WorksheetName "OUs" -Path $this.excelPath
-            $this.adUsers | Select-Object -Property @{Name="User Name";Expression={$_.Parameters["Name"]}},@{Name="Success";Expression={$_.Success}},@{Name="Messages";Expression={$_.messages -Join "; "}} | Export-Excel -WorksheetName "Users" -Path $this.excelPath
+            $this.adComputers | Select-Object -Property @{Name="Computer Name";Expression={$_.Name}},@{Name="Success";Expression={$_.Success}},@{Name="Messages";Expression={$_.messages -Join "; "}} | Export-Excel -WorksheetName "Computers" -Path $this.excelPath
+            $this.adContacts | Select-Object -Property @{Name="Contact Name";Expression={$_.Name}},@{Name="Success";Expression={$_.Success}},@{Name="Messages";Expression={$_.messages -Join "; "}} | Export-Excel -WorksheetName "Contacts" -Path $this.excelPath
+            $this.adGroups | Select-Object -Property @{Name="Group Name";Expression={$_.Name}},@{Name="Success";Expression={$_.Success}},@{Name="Messages";Expression={$_.messages -Join "; "}} | Export-Excel -WorksheetName "Groups" -Path $this.excelPath
+            $this.adGPOs | Select-Object -Property @{Name="GPO Name";Expression={$_.Name}},@{Name="Success";Expression={$_.Success}},@{Name="Messages";Expression={$_.messages -Join "; "}} | Export-Excel -WorksheetName "GPOs" -Path $this.excelPath
+            $this.adOUs | Select-Object -Property @{Name="OU";Expression={$_.adOUDN}},@{Name="Success";Expression={$_.Success}},@{Name="Messages";Expression={$_.messages -Join "; "}} | Export-Excel -WorksheetName "OUs" -Path $this.excelPath
+            $this.adUsers | Select-Object -Property @{Name="User Name";Expression={$_.Name}},@{Name="Success";Expression={$_.Success}},@{Name="Messages";Expression={$_.messages -Join "; "}} | Export-Excel -WorksheetName "Users" -Path $this.excelPath
             # Determine if session is interactive
             If ([Environment]::UserInteractive -eq $true) {
                 # Session is interactive; produce output for the operator
-                $this.adComputers | Select-Object -Property @{Name="Computer Name";Expression={$_.Parameters["Name"]}},@{Name="Success";Expression={$_.Success}},@{Name="Messages";Expression={$_.messages -Join "; "}} | Format-Table | Out-Host
-                $this.adContacts | Select-Object -Property @{Name="Contact Name";Expression={$_.Parameters["Name"]}},@{Name="Success";Expression={$_.Success}},@{Name="Messages";Expression={$_.messages -Join "; "}} | Format-Table | Out-Host
-                $this.adGroups | Select-Object -Property @{Name="Group Name";Expression={$_.Parameters["Name"]}},@{Name="Success";Expression={$_.Success}},@{Name="Messages";Expression={$_.messages -Join "; "}} | Format-Table | Out-Host
-                $this.adGPOs | Select-Object -Property @{Name="GPO Name";Expression={$_.adGPO.Name}},@{Name="Success";Expression={$_.Success}},@{Name="Messages";Expression={$_.messages -Join "; "}} | Format-Table | Out-Host
-                $this.adOUs | Select-Object -Property @{Name="OU";Expression={$_.Parameters["Name"]}},@{Name="Success";Expression={$_.Success}},@{Name="Messages";Expression={$_.messages -Join "; "}} | Format-Table | Out-Host
-                $this.adUsers | Select-Object -Property @{Name="User Name";Expression={$_.Parameters["Name"]}},@{Name="Success";Expression={$_.Success}},@{Name="Messages";Expression={$_.messages -Join "; "}} | Format-Table | Out-Host
+                $this.adComputers | Select-Object -Property @{Name="Computer Name";Expression={$_.Name}},@{Name="Success";Expression={$_.Success}},@{Name="Messages";Expression={$_.messages -Join "; "}} | Format-Table | Out-Host
+                $this.adContacts | Select-Object -Property @{Name="Contact Name";Expression={$_.Name}},@{Name="Success";Expression={$_.Success}},@{Name="Messages";Expression={$_.messages -Join "; "}} | Format-Table | Out-Host
+                $this.adGroups | Select-Object -Property @{Name="Group Name";Expression={$_.Name}},@{Name="Success";Expression={$_.Success}},@{Name="Messages";Expression={$_.messages -Join "; "}} | Format-Table | Out-Host
+                $this.adGPOs | Select-Object -Property @{Name="GPO Name";Expression={$_.Name}},@{Name="Success";Expression={$_.Success}},@{Name="Messages";Expression={$_.messages -Join "; "}} | Format-Table | Out-Host
+                $this.adOUs | Select-Object -Property @{Name="OU";Expression={$_.adOUDN}},@{Name="Success";Expression={$_.Success}},@{Name="Messages";Expression={$_.messages -Join "; "}} | Format-Table | Out-Host
+                $this.adUsers | Select-Object -Property @{Name="User Name";Expression={$_.Name}},@{Name="Success";Expression={$_.Success}},@{Name="Messages";Expression={$_.messages -Join "; "}} | Format-Table | Out-Host
             }
             # Determine if Excel was created
             If ([Boolean](Test-Path -Path $this.excelPath -ErrorAction SilentlyContinue) -eq $true) {
@@ -197,53 +197,19 @@ Class OZOMain {
     }
 }
 
-Class OZOADContact {
-    # PROPERTIES: Booleans
-    [Boolean] $Success = $true
-    # PROPERTIES: Hashtables
-    [Hashtable] $Parameters = @{}
-    # PROPERTIES: String lists
-    [System.Collections.Generic.List[String]] $Messages = @()
-    # METHODS: Constructor method
-    OZOADContact($adContact) {
-        # Define parameters
-        $this.Parameters = @{
-            Name = ($adContact.FirstName + " " + $adContact.LastName)
-            Type = "contact"
-            Path = $adContact.Path
-            DisplayName = ($adContact.FirstName + " " + $adContact.LastName)
-            Mail = $adContact.EmailAddress
-            TelephoneNumber = $adContact.TelephoneNumber
-        }
-        # Determine if the contact does not already exist
-        If ([Boolean](Get-ADObject -Filter { Name -eq $adContact.Name -And ObjectClass -eq "contact" } -ErrorAction SilentlyContinue) -eq $false) {
-            # Contact does not already exist; try to create it
-            Try {
-                New-ADObject @($this.Parameters) -ErrorAction Stop
-                # Success
-            } Catch {
-                # Failure
-                $this.Messages.Add(("Contact creation failed with error " + $_))
-                $this.Success = $false
-            }
-        } Else {
-            # Contact exists; skip
-            $this.Messages.Add("Contact already exists; skipping")
-        }
-    }
-}
-
 Class OZOADComputer {
     # PROPERTIES: Booleans
     [Boolean] $Success = $true
-    # PROPERTIES: Hashtables
-    [Hashtable] $Parameters = @{}
+    # PROPERTIES: Strings
+    [String] $Name = $null
     # PROPERTIES: String lists
     [System.Collections.Generic.List[String]] $Messages = @()
     # METHODS: Constructor method
     OZOADComputer($adComputer) {
+        # Set properties
+        $this.Name = $adComputer.ComputerName
         # Define parameters
-        $this.Parameters = @{
+        $Parameters = @{
             DisplayName = $adComputer.ComputerName
             Enabled = $true
             Name = $adComputer.ComputerName
@@ -253,7 +219,7 @@ Class OZOADComputer {
         If ([Boolean](Get-ADComputer -Identity $adComputer.Name -ErrorAction SilentlyContinue) -eq $false) {
             # Computer object does not already exist; try to create it
             Try {
-                New-ADComputer @($this.Parameters) -ErrorAction Stop
+                New-ADComputer @Parameters -ErrorAction Stop
                 # Success
             } Catch {
                 # Failure
@@ -267,26 +233,71 @@ Class OZOADComputer {
     }
 }
 
+Class OZOADContact {
+    # PROPERTIES: Booleans
+    [Boolean] $Success = $true
+    # PROPERTIES: Strings
+    [String] $Name = $null
+    # PROPERTIES: String lists
+    [System.Collections.Generic.List[String]] $Messages = @()
+    # METHODS: Constructor method
+    OZOADContact($adContact) {
+        # Local variables
+        $this.Name = ($adContact.FirstName + " " + $adContact.LastName)
+        # Define parameters
+        $Parameters = @{
+            Name = $this.Name
+            Type = "contact"
+            Path = $adContact.Path
+            OtherAttributes = @{
+                DisplayName = $this.Name
+                Mail = $adContact.EmailAddress
+                TelephoneNumber = $adContact.TelephoneNumber
+            }
+        }
+        # Determine if the contact does not already exist
+        If ([Boolean](Get-ADObject -Filter { Name -eq $this.Name -And ObjectClass -eq "contact" } -ErrorAction SilentlyContinue) -eq $false) {
+            # Contact does not already exist; try to create it
+            Try {
+                New-ADObject @Parameters -ErrorAction Stop
+                # Success
+            } Catch {
+                # Failure
+                $this.Messages.Add(("Contact creation failed with error " + $_))
+                $this.Success = $false
+            }
+        } Else {
+            # Contact exists; skip
+            $this.Messages.Add("Contact already exists; skipping")
+        }
+    }
+}
+
 Class OZOADGroup {
     # PROPERTIES: Booleans
     [Boolean] $Success = $true
-    # PROPERTIES: Hashtables
-    [Hashtable] $Parameters = @{}
+    # PROPERTIES: Strings
+    [String] $Name = $null
     # PROPERTIES: String lists
     [System.Collections.Generic.List[String]] $Messages = @()
     # METHODS: Constructor method
     OZOADGroup($adGroup) {
+        # Set properties
+        $this.Name = $adGroup.Name
         # Define parameters
-        $this.Parameters = @{
+        $Parameters = @{
             Name = $adGroup.Name
             Path = $adGroup.Path
-            GroupScope = $adGroup.GroupScope
+            GroupScope = $adGroup.Scope
         }
-        # Determine if the group does not already exist
-        If ([Boolean](Get-ADGroup -Identity $adGroup.Name -ErrorAction SilentlyContinue) -eq $false) {
-            # Group does not already exist; try to create it
+        # Try to get the group
+        Try {
+            Get-ADGroup -Identity $adGroup.Name -ErrorAction Stop | Out-Null
+            # Success
+        } Catch {
+            # Failure; try to create the group
             Try {
-                New-ADGroup @($this.Parameters) -ErrorAction Stop
+                New-ADGroup @Parameters -ErrorAction Stop
                 # Success; iterate over parent groups
                 ForEach ($Group in $adGroup.Groups) {
                     # Try to add group to parent group
@@ -304,9 +315,6 @@ Class OZOADGroup {
                 $this.Messages.Add(("Group creation failed with error " + $_))
                 $this.Success = $false
             }
-        } Else {
-            # Group already exists; skip
-            $this.Messages.Add("Group already exists; skipping")
         }
     }
 }
@@ -314,14 +322,14 @@ Class OZOADGroup {
 Class OZOADGPO {
     # PROPERTIES: Booleans
     [Boolean] $Success = $true
-    # PROPERTIES: PSCustomObjects
-    [PSCustomObject] $adGPO = $null
+    # PROPERTIES: Strings
+    [String] $Name = $null
     # PROPERTIES: String lists
     [System.Collections.Generic.List[String]] $Messages = @()
     # METHODS: Constructor method
     OZOADGPO($adGPO) {
         # Set properties
-        $this.adGPO = $adGPO
+        $this.Name = $adGPO.Name
         # Determine if the GPO does not already exist
         If ([Boolean](Get-GPO -Name $adGPO.Name -ErrorAction SilentlyContinue) -eq $false) {
             # GPO does not already exist; try to create it
@@ -353,33 +361,34 @@ Class OZOADGPO {
 Class OZOADOU {
     # PROPERTIES: Booleans
     [Boolean] $Success = $true
-    # PROPERTIES: Hashtables
-    [Hashtable] $Parameters = @{}
+    # PROPERTIES: Strings
+    [String] $adOUDN = $null
     # PROPERTIES: String lists
     [System.Collections.Generic.List[String]] $Messages = @()
     # METHODS: Constructor method
     OZOADOU($adOU) {
         # Generate DN
-        [String] $adOUDN = ("OU=" + $adOU.Name + "," + $adOU.Path)
+        [String] $this.adOUDN = ("OU=" + $adOU.Name + "," + $adOU.Path)
         # Define parameters
-        $this.Parameters = @{
+        $Parameters = @{
             Name = $adOU.Name
             Path = $adOU.Path
         }
-        # Determine if the OU does not already exist
-        If ([Boolean](Get-ADOrganizationalUnit -Identity $adOUDN -ErrorAction SilentlyContinue) -eq $false) {
-            # OU does not already exist; try to create it
+        # Try to get the Organizational Unit
+        Try {
+            Get-ADOrganizationalUnit -Identity $this.adOUDN -ErrorAction Stop | Out-Null
+            # Success            
+        } Catch {
+            # Failure; create the OU
             Try {
-                New-ADOrganizationalUnit @($this.Parameters) -ErrorAction Stop
+                New-ADOrganizationalUnit @Parameters -ErrorAction Stop
                 # Success
             } Catch {
                 # Failure
                 $this.Messages.Add(("Organizational Unit creation failed with error " + $_))
                 $this.Success = $false
             }
-        } Else {
-            # OU does not already exist; skip
-            $this.Messages.Add("Organizational Unit already exists; skipping")
+            
         }
     }
 }
@@ -387,26 +396,31 @@ Class OZOADOU {
 Class OZOADUser {
     # PROPERTIES: Booleans
     [Boolean] $Success = $true
-    # PROPERTIES: Hashtables
-    [Hashtable] $Parameters = @{}
+    # PROPERTIES: Strings
+    [String] $Name = $null
     # PROPERTIES: String lists
     [System.Collections.Generic.List[String]] $Messages = @()
     # METHODS: Constructor method
     OZOADUser($adUser,$adDomainName) {
+        # Set properties
+        $this.Name = ($adUser.GivenName + " " + $adUser.Surname)
         # Define parameters
-        $this.Parameters = @{
-            Name = ($adUser.GivenName + " " + $adUser.Surname)
+        $Parameters = @{
+            Name = $this.Name
             SamAccountName = $adUser.SamAccountName
             UserPrincipalName = ($adUser.SamAccountName + "@" + $adDomainName)
             AccountPassword = (ConvertTo-SecureString -AsPlainText -String $adUser.Password -Force)
             Enabled = $true
             Path = $adUser.Path
         }
-        # Determine that the user does not already exist
-        If ([Boolean](Get-ADUser -Identity $adUser.SamAccountName -ErrorAction SilentlyContinue) -eq $false) {
-            # User does not already exist; try to create the user
+        # Try to get the user
+        Try {
+            Get-ADUser -Identity $adUser.SamAccountName -ErrorAction Stop | Out-Null
+            # Success
+        } Catch {
+            # Failure; try to create the user
             Try {
-                New-ADUser @($this.Parameters) -ErrorAction Stop
+                New-ADUser @Parameters -ErrorAction Stop
                 # Success; iterate through the groups
                 ForEach ($adGroup in $adUser.Groups) {
                     # Try to create the group
@@ -422,9 +436,6 @@ Class OZOADUser {
                 $this.Messages.Add(("User creation failed with error " + $_))
                 $this.Success = $false
             }
-        } Else {
-            # User already exists; skip
-            $this.Messages.Add("User already exists; skipping")
         }
     }
 }
