@@ -1,13 +1,4 @@
 {
-    "ADContacts":[
-        {
-            "FirstName":"William",
-            "LastName":"Gates",
-            "EmailAddress":"wgates@contoso.com",
-            "Path":"OU=External Contacts,DC=contoso,DC=com",
-            "TelephoneNumber":"+1-206-555-6738"
-        }
-    ],
     "ADComputers":[
         {
             "ComputerName":"client",
@@ -17,6 +8,15 @@
             "ComputerName":"server",
             "Path":"OU=IT,OU=Servers,DC=contoso,DC=com"
         } 
+    ],
+    "ADContacts":[
+        {
+            "FirstName":"William",
+            "LastName":"Gates",
+            "EmailAddress":"wgates@contoso.com",
+            "Path":"OU=External Contacts,DC=contoso,DC=com",
+            "TelephoneNumber":"+1-206-555-6738"
+        }
     ],
     "ADDefaultObjectsOUs":{
         "Groups":"OU=Domain Groups,DC=contoso,DC=com",

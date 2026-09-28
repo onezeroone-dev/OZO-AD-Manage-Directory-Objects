@@ -29,7 +29,7 @@ ozo-ad-manage-directory-objects
 |`OutDir`|Directory for the Excel report. Defaults to the current directory.|
 
 ## JSON Configuration Definition
-This script leverages the [One Zero One Unified JSON Schema](https://onezeroone.dev/ozo-unified-json-schema/). The elements of the schema used by this script are as follows. Please also see [ozo-ad-manage-directory-objects-EXAMPLE.json](https://github.com/onezeroone-dev/OZO-AD-Manage-Directory-Objects/blob/main/ozo-ad-manage-directory-objects-EXAMPLE.json).
+This script leverages the [One Zero One Unified AD JSON Schema](https://onezeroone.dev/ozo-unified-ad-json-schema/). The elements of the schema used by this script are as follows. Please also see [ozo-ad-manage-directory-objects-EXAMPLE.json](https://github.com/onezeroone-dev/OZO-AD-Manage-Directory-Objects/blob/main/ozo-ad-manage-directory-objects-EXAMPLE.json).
 
 ```json
 {
