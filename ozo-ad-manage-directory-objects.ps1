@@ -1,7 +1,7 @@
 #Requires -Modules ImportExcel,OZO,OZOLogger -Version 5.1
 
 <#PSScriptInfo
-    .VERSION 0.0.1
+    .VERSION 0.0.2
     .GUID 87eaa283-5e8b-4265-a025-ce1f5791491b
     .AUTHOR Andy Lievertz <alievertz@onezeroone.dev>
     .COMPANYNAME One Zero One
