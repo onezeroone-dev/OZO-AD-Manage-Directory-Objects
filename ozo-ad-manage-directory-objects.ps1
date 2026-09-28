@@ -80,7 +80,7 @@ Class OZOMain {
                 $this.adGroups.Add(([OZOADGroup]::new($adGroup)))
             }
             # Iterate through the JSON Group Policy objects
-            ForEach ($adGPO in $this.Json.ADGroupPolicies) {
+            ForEach ($adGPO in $this.Json.ADGroupPolicyObjects) {
                 # Add an OZOADGroupPolicyObject object to the adGPOs list
                 $this.adGPOs.Add(([OZOADGPO]::new($adGPO)))
             }
